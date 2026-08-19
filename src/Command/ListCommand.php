@@ -2,6 +2,7 @@
 
 namespace Zenstruck\BackupBundle\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Zenstruck\Backup\Console\Command\ListCommand as BaseListCommand;
 use Zenstruck\Backup\Console\Helper\BackupHelper;
 use Zenstruck\Backup\Executor;
@@ -10,6 +11,7 @@ use Zenstruck\Backup\ProfileRegistry;
 /**
  * @author Kevin Bond <kevinbond@gmail.com>
  */
+#[AsCommand('zenstruck:backup:list')]
 class ListCommand extends BaseListCommand
 {
     public function __construct(
