@@ -23,12 +23,12 @@ class ZenstruckBackupExtension extends Extension
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
-        $loader->load('destinations.xml');
-        $loader->load('namers.xml');
-        $loader->load('processors.xml');
-        $loader->load('sources.xml');
+        $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.php');
+        $loader->load('destinations.php');
+        $loader->load('namers.php');
+        $loader->load('processors.php');
+        $loader->load('sources.php');
 
         $abstractProfile = $container->getDefinition('zenstruck_backup.abstract_profile');
         $abstractProfile->setFactory([new Reference('zenstruck_backup.profile_builder'), 'create']);
@@ -96,8 +96,8 @@ class ZenstruckBackupExtension extends Extension
     {
         $tempContainer = new ContainerBuilder();
 
-        $loader = new Loader\XmlFileLoader($tempContainer, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('factories.xml');
+        $loader = new Loader\PhpFileLoader($tempContainer, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('factories.php');
 
         return new Configuration(
             $this->getServices('zenstruck_backup.namer_factory', $tempContainer),
