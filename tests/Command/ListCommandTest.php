@@ -3,6 +3,8 @@
 namespace Zenstruck\BackupBundle\Tests\Command;
 
 use Zenstruck\Backup\Console\Command\ProfileActionCommand;
+use Zenstruck\Backup\Executor;
+use Zenstruck\Backup\ProfileRegistry;
 use Zenstruck\BackupBundle\Command\ListCommand;
 
 /**
@@ -10,9 +12,9 @@ use Zenstruck\BackupBundle\Command\ListCommand;
  */
 class ListCommandTest extends ProfileActionCommandTest
 {
-    protected function createCommand(): ListCommand|ProfileActionCommand
+    protected function createCommand(ProfileRegistry $registry, Executor $executor): ListCommand|ProfileActionCommand
     {
-        return new ListCommand();
+        return new ListCommand($registry, $executor);
     }
 
     protected function getCommandName(): string

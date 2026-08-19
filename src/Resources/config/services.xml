@@ -6,10 +6,14 @@
 
     <services>
         <service id="zenstruck_backup.command.list" class="Zenstruck\BackupBundle\Command\ListCommand">
+            <argument type="service" id="zenstruck_backup.profile_registry" />
+            <argument type="service" id="zenstruck_backup.executor" />
             <tag name="console.command" />
         </service>
 
         <service id="zenstruck_backup.command.run" class="Zenstruck\BackupBundle\Command\RunCommand">
+            <argument type="service" id="zenstruck_backup.profile_registry" />
+            <argument type="service" id="zenstruck_backup.executor" />
             <tag name="console.command" />
         </service>
 
